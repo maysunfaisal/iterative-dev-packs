@@ -12,16 +12,19 @@ ls -la
 
 date
 echo running full maven build in /home/default/idp/src
-mvn -B package -DskipLibertyPackage -Dmaven.repo.local=/home/default/idp/cache/.m2/repository -DskipTests=true
+mvn -B package -DskipLibertyPackage -Dmaven.repo.local=/home/default/idp/cache/.m2/repository -Dskip=true -DskipTests=true
 
 
 date
 echo listing /data/idp/output after mvn
 ls -la /home/default/idp/src/target
 
+
+TARGET_WAR=$(ls /home/default/idp/src/target/*.war | head -n1)
+
 date
 echo copying artifacts to /config/apps
-cp -rf /home/default/idp/src/target/mpnew-1.0-SNAPSHOT.war /config/apps
+cp -rf $TARGET_WAR /config/apps
 
 date
 echo listing /config/apps
