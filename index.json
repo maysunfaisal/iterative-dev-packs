@@ -49,5 +49,17 @@
             "/java/spring-buildtasks/bin/build-container-full.sh",
             "/java/spring-buildtasks/bin/start-server.sh"
         ]
+    },
+    {
+        "name": "nodejs",
+        "description": "NodeJS sample",
+        "language": "javascript",
+        "framework": "nodejs",
+        "devpack": {
+            "self": "/javascript/nodejs/idp.yaml"
+        },
+        "artifacts": [
+            "/javascript/nodejs/bin/npm-start.sh"
+        ]
     }
 ]

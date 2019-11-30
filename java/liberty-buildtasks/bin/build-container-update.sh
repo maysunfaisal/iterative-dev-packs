@@ -20,13 +20,15 @@ ls -la
 
 date
 echo running update maven build in /tmp/app
-mvn -B package -DskipLibertyPackage -Dmaven.repo.local=/data/idp/cache/.m2/repository -DskipTests=true
+mvn -B package -DskipLibertyPackage -Dmaven.repo.local=/data/idp/cache/.m2/repository -Dskip -DskipTests=true
 
 date
 echo copying artifacts to /data/idp/buildartifacts/apps 
 
 chown -fR 1001 /tmp/app/target
-cp -rf /tmp/app/target/mpnew-1.0-SNAPSHOT.war /data/idp/buildartifacts/apps 
+TARGET_WAR=$(ls /tmp/app/target/*.war | head -n1)
+
+cp -rf $TARGET_WAR /data/idp/buildartifacts/apps 
 
 date
 echo listing /data/idp/buildartifacts/apps after build and chown 1001 buildoutput
